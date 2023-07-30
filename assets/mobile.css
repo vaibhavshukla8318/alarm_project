@@ -1,0 +1,259 @@
+
+  /* Global reset styles for all elements */
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Styles for the main container */
+  .mobile-container {
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+  }
+  
+  /* Top bar styles */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to right, #3f4c6b, #606c88); 
+    color: #fff;
+  }
+  
+  /* Top bar right button styles */
+  .top-bar-right .btn {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: -7px;
+  }
+  
+  /* Offcanvas styles */
+  .offcanvas.offcanvas-bottom {
+    height: 100%;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  }
+  
+  .offcanvas-header {
+    margin-top: -20px;
+  }
+  
+  /* Cancel button styles */
+  .cancel-btn {
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  /* Styles for the time box container */
+  .time-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: -5px 0 15px 0;
+  }
+  
+  /* Styles for the center time box */
+  .time-box-center {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(127,113,116,1) 0.1%, rgba(79,70,72,1) 90% );
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);    
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Styles for the pulsing animation when alarm is active */
+  .time-box.alarm-active::before {
+    content: '';
+    width: 215px;
+    height: 215px;
+    position: absolute;
+    background: rgb(190, 54, 54);
+    z-index: -1;
+    border-radius: 50%;
+    animation: pulse 800ms infinite;
+  }
+  
+  @keyframes pulse {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+  }
+  
+  /* Styles for text inside the time box */
+  .time-box div {
+    color: #fff;
+    font-family: cursive;
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  
+  /* Styles for the select box container */
+  .select-box {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  /* Styles for individual select boxes */
+  .select {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    size: 2;
+  }
+  .select option{
+    width: 100%;
+    box-shadow: 10px 10px 20px #a4a4a4,
+    -10px -10px 20px #ffffff;
+  }
+  
+  /* Styles for the label */
+  .label {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  /* Styles for buttons */
+  .mobile-set-alarm-btn,
+  .mobile-clear-alarm-btn {
+    outline: none;
+    border: none;
+    padding: 0.8rem 1.3rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #bd3737;
+  }
+/* Music clear styles */
+.music-clear{
+  width:100%;
+}
+
+.mobile-selected-time-box{
+  height:93vh;
+  overflow-y: auto;
+}
+  /* Selected time box styles */
+  .mobile-selected-time-box div {
+    background: linear-gradient(90deg, rgba(0, 0, 4, 1) 0%, rgba(24, 49, 82, 1) 15%, rgba(25, 51, 83, 1) 67%, rgba(0, 212, 255, 0) 100%);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-top: 20px;
+    border-radius: 1rem;
+    color:#fff;
+  }
+  
+  .mobile-selected-time-box div:hover {
+    border: solid thin grey;
+    cursor: pointer;
+    transform: translateY(-10px);
+  }
+  
+  /* Styles for the volume container */
+  .mobile-volume-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Styles for the music player */
+  .mobile-music-player {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    border-radius: 1rem;
+    background: #fff;
+  }
+  
+  /* Styles for the volume button */
+  .mobile-volume-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: RED;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mobile-volume-button:hover {
+    background-color: greenyellow;
+  }
+  
+  /* Styles for the clock container */
+  .music-clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Media queries */
+  @media (max-width: 185px) {
+    .mobile-container {
+      display: none;
+    }
+
+    /* not supported */
+    .message {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      color: #555;
+      font-size: 16px;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+
+  }
+  
+  @media (min-width: 500px) {
+    .mobile-container {
+      display: none;
+    }
+
+     /* not supported */
+  .message{
+  display: none;
+  }
+}
+  
+  @media (max-width: 500px) {
+    body {
+      background: linear-gradient(to right, #29323c, #485563);
+    }
+  }
+  
+
+
+
+
+
+
+

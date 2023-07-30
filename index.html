@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create and set custom alarms with this interactive alarm clock project. Set alarm time, choose music, and get notified with a GIF animation.">
+    <meta name="keywords" content="alarm, alarm clock, set alarm, custom alarm, music alarm, GIF alarm, interactive, HTML, CSS, JavaScript">
+    <meta name="author" content="Vaibhav Shukla">
+    <link rel="icon" type="image/png" href="./assets/gif/source.gif">
+    <title>Alarm Clock</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Link to Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <!-- Link to custom stylesheets -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/mobile.css">
+</head>
+<body>
+<div class="container">
+    <!-- Top bar for setting the alarm -->
+    <div class="top-bar-container">
+        <h5>Alarm</h5>
+        <h5 class="add-alarm-btn add" onclick="alarmSet()">Add</h5>
+    </div>
+
+    <!-- Main Alarm Clock HTML code -->
+
+    <main>
+        <div class="main-container">
+            <div class="alarm-container">
+                <div class="alarm-box-top">
+                    <button class="btn-set alarm-button" onclick="alarmSet()"></button>
+                    <button class="btn-clear alarm-button" onclick="alarmClear()"></button>
+                </div>
+                <div class="alarm-box-middle">
+                    <!-- Alarm time selection -->
+                    <div class="alarm-time-container">
+                        <div class="alarm-time">
+                            <div class="hms">
+                                <div class="alarm-select">
+                                    <select id="alarmhrs" class="main-container-select">
+                                       <!--JavaScript option for hours -->
+                                    </select>
+                                </div>
+                                <div class="alarm-select">
+                                    <select id="alarmmins" class="main-container-select">
+                                       <!--JavaScript option for minutes -->
+                                    </select>
+                                </div>
+                                <div class="alarm-select">
+                                    <select id="alarmsecs" class="main-container-select">
+                                       <!--JavaScript option for second -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ampm_day">
+                                <div class="ampm">
+                                        <select id="ampm" class="alarm-select" class="main-container-select">
+                                            <option value="AM">AM</option>
+                                            <option value="PM">PM</option>
+                                        </select>
+                                </div>
+                                <div class="day">
+                                    <select class="alarm-select" id="alarmday">
+                                        <option value="Everyday" selected>Daily</option> 
+                                        <option value="Sunday">Sun</option>
+                                        <option value="Monday">Mon</option>
+                                        <option value="Tuesday">Tues</option>
+                                        <option value="Wednesday">Wed</option>
+                                        <option value="Thursday">Thu</option>
+                                        <option value="Friday">Fri</option>
+                                        <option value="Saturday">Sat</option>
+                                    </select> 
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- GIF container -->
+                    <div class="gif-container">
+                        <img src="./assets/gif/fish.gif" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music and Clock section -->
+            <div class="music-clock-container">
+                <div class="main-time">
+                    <div id="clock"></div>
+                    <div id="date"></div>
+                </div>
+                <div class="music-player">
+                    <!-- Music selection dropdown -->
+                    <select id="music-dropdown" onchange="changeMusic()">
+                        <option value="./assets/audio/1.mp3">alarm sound</option>
+                        <option value="./assets/audio/2.mp3">high volume</option>
+                        <option value="./assets/audio/3.mp3">extreme alarm tone</option>
+                        <option value="./assets/audio/4.mp3">alarm tone</option>
+                        <option value="./assets/audio/5.mp3">cool alarm</option>
+                        <option value="./assets/audio/6.mp3">flute music 1</option>
+                        <option value="./assets/audio/7.mp3">krishna flute</option>
+                        <option value="./assets/audio/8.mp3">achyutam keshavam</option>
+                        <option value="./assets/audio/9.mp3">flute music 2</option>
+                        <option value="./assets/audio/10.mp3">opening sound</option>
+                        <option value="./assets/audio/11.mp3">on and on</option>
+                        <option value="local-music" id="selected-music-name">Upload</option>
+                    </select>
+                    <input type="file" accept="audio/*" id="local-music" onchange="handleFileSelect(event)" style="display: none;">    
+                    <!-- Volume control buttons -->
+                    <div class="volume-container">
+                        <button class="volume-button" onclick="changeVolume('up')">+</button>
+                        <button class="volume-button" onclick="changeVolume('down')">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container for showing selected alarm time -->
+        <div class="selected-time-container">
+            <div class="selected-time-box"></div>
+        </div>
+    </main>
+</div>
+
+
+<div class="mobile-container">
+  <div class="top-bar">
+      <h2>Alarm</h2>
+      <div class="top-bar-right">
+          <!-- Toggle offcanvas for mobile clock -->
+          <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom">Clock</button>
+          <div class="offcanvas offcanvas-bottom" id="offcanvasBottom">
+              <div class="offcanvas-header">
+                  <div class="cancel-btn" data-bs-dismiss="offcanvas">Cancel</div>
+                  <h5 class="mobile-set-alarm-btn done" data-bs-dismiss="offcanvas" onclick="mobileAlarmSet()">Done</h5>
+              </div>
+              <div class="offcanvas-body small">
+                  <div class="time-box">
+                      <div class="time-box-center">
+                          <div id="mobile-clock"></div>
+                          <div id="mobile-date"></div>
+                      </div>
+                  </div>
+                  <div class="select-box">
+                      <!-- Mobile alarm time selection -->
+                      <div>
+                          <label class="label" for="mobile-alarmhrs">Hour:</label>
+                          <select class="select" id="mobile-alarmhrs" onfocus="this.size=5" onblur="this.size=1">
+                              <option value="1">01</option>
+                              <!-- Add more options for hours if needed -->
+                          </select>
+                      </div>
+                      <div>
+                          <label class="label" for="mobile-alarmmins">Minute:</label>
+                          <select class="select" id="mobile-alarmmins" onfocus="this.size=5" onblur="this.size=1">
+                              <option value="0">00</option>
+                              <!-- Add more options for minutes if needed -->
+                          </select>
+                      </div>
+                      <div>
+                          <label class="label" for="mobile-alarmsecs">Second:</label>
+                          <select class="select" id="mobile-alarmsecs" onfocus="this.size=5" onblur="this.size=1">
+                              <option value="0">00</option>
+                              <!-- Add more options for seconds if needed -->
+                          </select>
+                      </div>
+                      <div>
+                          <label class="label" for="mobile-ampm">AM/PM</label>
+                          <select class="select" id="mobile-ampm">
+                              <option value="AM">AM</option>
+                              <option value="PM">PM</option>
+                          </select>
+                      </div>
+                      <div>
+                        <select class="select" id="mobile-alarmday" onfocus="this.size=4" onblur="this.size=1">
+                          <option value="Everyday">Everyday</option> <!-- Add the "Everyday" option -->
+                          <option value="Sunday">Sunday</option>
+                          <option value="Monday">Monday</option>
+                          <option value="Tuesday">Tuesday</option>
+                          <option value="Wednesday">Wednesday</option>
+                          <option value="Thursday">Thursday</option>
+                          <option value="Friday">Friday</option>
+                          <option value="Saturday">Saturday</option>
+                        </select> 
+                      </div>                       
+                  </div>
+                  <div class="mobile-music-player">
+                      <!-- Mobile music selection dropdown -->
+                    <select class="select" id="mobile-music-dropdown" onchange="mobileChangeMusic()" onfocus="this.size=4" onblur="this.size=1">
+                        <option value="./assets/audio/1.mp3">alarm sound</option>
+                        <option value="./assets/audio/2.mp3">high volume</option>
+                        <option value="./assets/audio/3.mp3">extreme alarm tone</option>
+                        <option value="./assets/audio/4.mp3">alarm tone</option>
+                        <option value="./assets/audio/5.mp3">cool alarm</option>
+                        <option value="./assets/audio/6.mp3">flute music 1</option>
+                        <option value="./assets/audio/7.mp3">krishna flute</option>
+                        <option value="./assets/audio/8.mp3">achyutam keshavam</option>
+                        <option value="./assets/audio/9.mp3">flute music 2</option>
+                        <option value="./assets/audio/10.mp3">opening sound</option>
+                        <option value="./assets/audio/11.mp3">on and on</option>
+                        <option value="mobile-local-music" id="mobile-selected-music-name">Upload</option>
+                    </select>
+
+                    <input type="file" accept="audio/*" id="mobile-local-music" onchange="mobileHandleFileSelect(event)" style="display: none;">
+                    
+                    <div class="mobile-volume-container">
+                        <!-- Mobile volume control buttons -->
+                        <button class="mobile-volume-button" onclick="mobileChangeVolume('up')">+</button>
+                        <button class="mobile-volume-button" onclick="mobileChangeVolume('down')">-</button>
+                    </div>
+                  </div>
+                  <!-- Button to stop music -->
+                  <button class="music-clear mobile-set-alarm-btn" onclick="mobileAlarmClear()">Stop Music</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="mobile-selected-time-box"></div>
+
+  <!--message element to display "not supported" when the width is less than 185px -->
+</div>
+<div class="message">
+   <p> Sorry, the content is not supported in this view.</p>
+</div>
+
+  
+
+
+<!-- Scripts -->
+<script src="./assets/script.js"></script>
+<script src="./assets/mobile.js"></script>
+<!-- <script src="practice.js"></script> -->
+</body>
+</html>
