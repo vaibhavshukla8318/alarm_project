@@ -150,7 +150,7 @@ function mobileAlarmSet() {
       sound.play();
       sound.loop = true;
       timeBox.classList.add("alarm-active");
-      alert('Everyday Alarm!');
+      // alert('Everyday Alarm!');
     }, timeDifference);
   } else {
     // specific day is selected,
@@ -172,7 +172,7 @@ function mobileAlarmSet() {
       sound.play();
       sound.loop = true;
       timeBox.classList.add("alarm-active");
-      alert('Alarm on ' + alarmDay + '!');
+      // alert('Alarm on ' + alarmDay + '!');
     }, timeDifference);
   }
 }
