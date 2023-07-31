@@ -99,7 +99,7 @@
           sound.play();
           sound.loop = true;
           gifContainer.classList.add("alarm-active");
-          alert('Everyday Alarm!');
+          // alert('Everyday Alarm!');
         }, timeDifference);
       } else {
         // specific day is selected
@@ -121,7 +121,7 @@
           sound.play();
           sound.loop = true;
           gifContainer.classList.add("alarm-active");
-          alert('Alarm on ' + alarmDay + '!');
+          // alert('Alarm on ' + alarmDay + '!');
         }, timeDifference);
       }
     }
